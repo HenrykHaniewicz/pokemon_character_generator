@@ -1,0 +1,19 @@
+metadata:
+  gender: ["male", "female"]
+  hair_hat_color: ["red", "blue", "green", "yellow", "white", "grey", "black", "pink", "brown"]
+  torso_color: ["red", "blue", "green", "yellow", "white", "grey", "black", "pink", "brown"]
+  age: ["young", "middle", "old"]
+  hat: [true, false]
+
+train:
+  z_dim: 100
+  batch_size: 32
+  epochs: 100
+  data_dir: data/sprites
+  labels_file: data/sprites/labels.json
+  save_path: models/sprite_gen.pt
+
+generate:
+  output_dir: generated_sprites
+  num_samples: 10
+  allow_grading: false

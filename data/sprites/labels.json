@@ -1,0 +1,674 @@
+{
+  "NPC 01.png": {
+    "gender": "male",
+    "hair_hat_color": "blue",
+    "torso_color": "blue",
+    "age": "middle",
+    "hat": true
+  },
+  "NPC 02.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "grey",
+    "age": "young",
+    "hat": false
+  },
+  "NPC 03.png": {
+    "gender": "female",
+    "hair_hat_color": "brown",
+    "torso_color": "red",
+    "age": "young",
+    "hat": false
+  },
+  "NPC 04.png": {
+    "gender": "female",
+    "hair_hat_color": "brown",
+    "torso_color": "red",
+    "age": "middle",
+    "hat": false
+  },
+  "NPC 05.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "green",
+    "age": "young",
+    "hat": false
+  },
+  "NPC 06.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "white",
+    "age": "middle",
+    "hat": false
+  },
+  "NPC 07.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "brown",
+    "age": "young",
+    "hat": false
+  },
+  "NPC 08.png": {
+    "gender": "female",
+    "hair_hat_color": "brown",
+    "torso_color": "green",
+    "age": "young",
+    "hat": false
+  },
+  "NPC 09.png": {
+    "gender": "male",
+    "hair_hat_color": "white",
+    "torso_color": "white",
+    "age": "middle",
+    "hat": true
+  },
+  "NPC 10.png": {
+    "gender": "male",
+    "hair_hat_color": "white",
+    "torso_color": "brown",
+    "age": "old",
+    "hat": false
+  },
+  "NPC 11.png": {
+    "gender": "female",
+    "hair_hat_color": "grey",
+    "torso_color": "pink",
+    "age": "old",
+    "hat": false
+  },
+  "NPC 12.png": {
+    "gender": "male",
+    "hair_hat_color": "white",
+    "torso_color": "white",
+    "age": "old",
+    "hat": true
+  },
+  "NPC 13.png": {
+    "gender": "male",
+    "hair_hat_color": "black",
+    "torso_color": "white",
+    "age": "middle",
+    "hat": false
+  },
+  "NPC 14.png": {
+    "gender": "female",
+    "hair_hat_color": "grey",
+    "torso_color": "blue",
+    "age": "old",
+    "hat": false
+  },
+  "NPC 15.png": {
+    "gender": "male",
+    "hair_hat_color": "black",
+    "torso_color": "blue",
+    "age": "middle",
+    "hat": false
+  },
+  "NPC 16.png": {
+    "gender": "female",
+    "hair_hat_color": "pink",
+    "torso_color": "white",
+    "age": "middle",
+    "hat": true
+  },
+  "NPC 17.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "white",
+    "age": "middle",
+    "hat": false
+  },
+  "NPC 18.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "brown",
+    "age": "old",
+    "hat": false
+  },
+  "NPC 19.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "red",
+    "age": "middle",
+    "hat": false
+  },
+  "NPC 20.png": {
+    "gender": "male",
+    "hair_hat_color": "green",
+    "torso_color": "green",
+    "age": "middle",
+    "hat": true
+  },
+  "NPC 21.png": {
+    "gender": "male",
+    "hair_hat_color": "grey",
+    "torso_color": "brown",
+    "age": "middle",
+    "hat": false
+  },
+  "NPC 22.png": {
+    "gender": "female",
+    "hair_hat_color": "brown",
+    "torso_color": "white",
+    "age": "middle",
+    "hat": false
+  },
+  "NPC 23.png": {
+    "gender": "female",
+    "hair_hat_color": "red",
+    "torso_color": "white",
+    "age": "middle",
+    "hat": true
+  },
+  "NPC 24.png": {
+    "gender": "male",
+    "hair_hat_color": "yellow",
+    "torso_color": "grey",
+    "age": "middle",
+    "hat": false
+  },
+  "NPC 25.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "blue",
+    "age": "middle",
+    "hat": false
+  },
+  "NPC 26.png": {
+    "gender": "female",
+    "hair_hat_color": "brown",
+    "torso_color": "green",
+    "age": "young",
+    "hat": false
+  },
+  "NPC 27.png": {
+    "gender": "male",
+    "hair_hat_color": "black",
+    "torso_color": "pink",
+    "age": "young",
+    "hat": false
+  },
+  "NPC 28.png": {
+    "gender": "female",
+    "hair_hat_color": "blue",
+    "torso_color": "red",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_AROMALADY.png": {
+    "gender": "female",
+    "hair_hat_color": "brown",
+    "torso_color": "red",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_BEAUTY.png": {
+    "gender": "female",
+    "hair_hat_color": "yellow",
+    "torso_color": "red",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_BIRDKEEPER.png": {
+    "gender": "male",
+    "hair_hat_color": "yellow",
+    "torso_color": "red",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_BLACKBELT.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "white",
+    "age": "middle",
+    "hat": true
+  },
+  "trainer_BUGCATCHER.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "pink",
+    "age": "young",
+    "hat": true
+  },
+  "trainer_BURGLAR.png": {
+    "gender": "male",
+    "hair_hat_color": "black",
+    "torso_color": "white",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_CAMPER.png": {
+    "gender": "male",
+    "hair_hat_color": "green",
+    "torso_color": "green",
+    "age": "young",
+    "hat": true
+  },
+  "trainer_CHAMPION.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "black",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_CHANNELER.png": {
+    "gender": "female",
+    "hair_hat_color": "black",
+    "torso_color": "red",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_COOLTRAINER_F.png": {
+    "gender": "female",
+    "hair_hat_color": "blue",
+    "torso_color": "red",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_COOLTRAINER_M.png": {
+    "gender": "male",
+    "hair_hat_color": "blue",
+    "torso_color": "red",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_CRUSHGIRL.png": {
+    "gender": "female",
+    "hair_hat_color": "brown",
+    "torso_color": "red",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_ELITEFOUR_Agatha.png": {
+    "gender": "female",
+    "hair_hat_color": "grey",
+    "torso_color": "red",
+    "age": "old",
+    "hat": false
+  },
+  "trainer_ELITEFOUR_Bruno.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "grey",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_ELITEFOUR_Lance.png": {
+    "gender": "male",
+    "hair_hat_color": "red",
+    "torso_color": "grey",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_ELITEFOUR_Lorelei.png": {
+    "gender": "female",
+    "hair_hat_color": "red",
+    "torso_color": "grey",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_ENGINEER.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "white",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_FISHERMAN.png": {
+    "gender": "male",
+    "hair_hat_color": "white",
+    "torso_color": "white",
+    "age": "middle",
+    "hat": true
+  },
+  "trainer_GAMBLER.png": {
+    "gender": "male",
+    "hair_hat_color": "white",
+    "torso_color": "blue",
+    "age": "old",
+    "hat": false
+  },
+  "trainer_GENTLEMAN.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "brown",
+    "age": "old",
+    "hat": true
+  },
+  "trainer_HIKER.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "red",
+    "age": "middle",
+    "hat": true
+  },
+  "trainer_JUGGLER.png": {
+    "gender": "male",
+    "hair_hat_color": "yellow",
+    "torso_color": "red",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_LADY.png": {
+    "gender": "female",
+    "hair_hat_color": "brown",
+    "torso_color": "red",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_LASS.png": {
+    "gender": "female",
+    "hair_hat_color": "brown",
+    "torso_color": "blue",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_LEADER_Blaine.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "white",
+    "age": "old",
+    "hat": false
+  },
+  "trainer_LEADER_Brock.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "green",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_LEADER_Erika.png": {
+    "gender": "female",
+    "hair_hat_color": "blue",
+    "torso_color": "red",
+    "age": "middle",
+    "hat": true
+  },
+  "trainer_LEADER_Giovanni.png": {
+    "gender": "male",
+    "hair_hat_color": "black",
+    "torso_color": "grey",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_LEADER_Koga.png": {
+    "gender": "male",
+    "hair_hat_color": "grey",
+    "torso_color": "red",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_LEADER_Misty.png": {
+    "gender": "female",
+    "hair_hat_color": "yellow",
+    "torso_color": "blue",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_LEADER_Sabrina.png": {
+    "gender": "female",
+    "hair_hat_color": "blue",
+    "torso_color": "red",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_LEADER_Surge.png": {
+    "gender": "male",
+    "hair_hat_color": "yellow",
+    "torso_color": "green",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_PAINTER.png": {
+    "gender": "female",
+    "hair_hat_color": "brown",
+    "torso_color": "blue",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_PICNICKER.png": {
+    "gender": "female",
+    "hair_hat_color": "green",
+    "torso_color": "green",
+    "age": "young",
+    "hat": true
+  },
+  "trainer_POKEMANIAC.png": {
+    "gender": "male",
+    "hair_hat_color": "black",
+    "torso_color": "white",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_POKEMONBREEDER.png": {
+    "gender": "female",
+    "hair_hat_color": "brown",
+    "torso_color": "red",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_POKEMONRANGER_F.png": {
+    "gender": "female",
+    "hair_hat_color": "green",
+    "torso_color": "green",
+    "age": "young",
+    "hat": true
+  },
+  "trainer_POKEMONRANGER_M.png": {
+    "gender": "male",
+    "hair_hat_color": "green",
+    "torso_color": "green",
+    "age": "young",
+    "hat": true
+  },
+  "trainer_POKEMONTRAINER_Brendan.png": {
+    "gender": "male",
+    "hair_hat_color": "white",
+    "torso_color": "brown",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_POKEMONTRAINER_Leaf.png": {
+    "gender": "female",
+    "hair_hat_color": "white",
+    "torso_color": "blue",
+    "age": "young",
+    "hat": true
+  },
+  "trainer_POKEMONTRAINER_May.png": {
+    "gender": "female",
+    "hair_hat_color": "red",
+    "torso_color": "red",
+    "age": "young",
+    "hat": true
+  },
+  "trainer_POKEMONTRAINER_Red.png": {
+    "gender": "male",
+    "hair_hat_color": "red",
+    "torso_color": "red",
+    "age": "young",
+    "hat": true
+  },
+  "trainer_PROFESSOR.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "white",
+    "age": "old",
+    "hat": false
+  },
+  "trainer_PSYCHIC_F.png": {
+    "gender": "female",
+    "hair_hat_color": "brown",
+    "torso_color": "pink",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_PSYCHIC_M.png": {
+    "gender": "male",
+    "hair_hat_color": "blue",
+    "torso_color": "red",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_RIVAL1.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "black",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_RIVAL2.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "black",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_ROCKER.png": {
+    "gender": "male",
+    "hair_hat_color": "yellow",
+    "torso_color": "red",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_ROCKETBOSS.png": {
+    "gender": "male",
+    "hair_hat_color": "black",
+    "torso_color": "grey",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_RUINMANIAC.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "red",
+    "age": "middle",
+    "hat": true
+  },
+  "trainer_SAILOR.png": {
+    "gender": "male",
+    "hair_hat_color": "white",
+    "torso_color": "white",
+    "age": "middle",
+    "hat": true
+  },
+  "trainer_SCIENTIST.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "white",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_SUPERNERD.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "white",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_SWIMMER2_F.png": {
+    "gender": "female",
+    "hair_hat_color": "green",
+    "torso_color": "white",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_SWIMMER2_M.png": {
+    "gender": "male",
+    "hair_hat_color": "white",
+    "torso_color": "white",
+    "age": "young",
+    "hat": true
+  },
+  "trainer_SWIMMER_F.png": {
+    "gender": "female",
+    "hair_hat_color": "red",
+    "torso_color": "white",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_SWIMMER_M.png": {
+    "gender": "male",
+    "hair_hat_color": "white",
+    "torso_color": "brown",
+    "age": "young",
+    "hat": true
+  },
+  "trainer_TAMER.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "red",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_TEAMROCKET_F.png": {
+    "gender": "female",
+    "hair_hat_color": "red",
+    "torso_color": "black",
+    "age": "middle",
+    "hat": true
+  },
+  "trainer_TEAMROCKET_M.png": {
+    "gender": "male",
+    "hair_hat_color": "black",
+    "torso_color": "black",
+    "age": "middle",
+    "hat": true
+  },
+  "trainer_TUBER2_F.png": {
+    "gender": "female",
+    "hair_hat_color": "brown",
+    "torso_color": "red",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_TUBER2_M.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "blue",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_TUBER_F.png": {
+    "gender": "female",
+    "hair_hat_color": "brown",
+    "torso_color": "red",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_TUBER_M.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "blue",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_TWINS.png": {
+    "gender": "female",
+    "hair_hat_color": "pink",
+    "torso_color": "blue",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_YOUNGCOUPLE.png": {
+    "gender": "male",
+    "hair_hat_color": "brown",
+    "torso_color": "red",
+    "age": "middle",
+    "hat": false
+  },
+  "trainer_YOUNGCOUPLE_2.png": {
+    "gender": "female",
+    "hair_hat_color": "yellow",
+    "torso_color": "red",
+    "age": "young",
+    "hat": false
+  },
+  "trainer_YOUNGSTER.png": {
+    "gender": "male",
+    "hair_hat_color": "yellow",
+    "torso_color": "blue",
+    "age": "young",
+    "hat": true
+  }
+}
