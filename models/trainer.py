@@ -18,7 +18,7 @@ def sobel_edge_detector(img):
     edges = torch.sqrt(grad_x ** 2 + grad_y ** 2)
     return edges
 
-def train_conditional_generator(model, dataloader, z_dim, device, epochs, lambda_outline=0.1):
+def train_conditional_generator(model, dataloader, z_dim, device, epochs, lambda_outline=1.0):
     criterion = nn.MSELoss()
     optimizer = optim.Adam(model.parameters(), lr=2e-4)
 

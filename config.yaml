@@ -7,8 +7,8 @@ metadata:
 
 train:
   z_dim: 100
-  batch_size: 32
-  epochs: 100
+  batch_size: 16
+  epochs: 50
   data_dir: data/sprites
   labels_file: data/sprites/labels.json
   save_path: models/sprite_gen.pt
