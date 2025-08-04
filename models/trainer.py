@@ -4,16 +4,19 @@ import torch.optim as optim
 import torch.nn.functional as F
 
 def sobel_edge_detector(img):
-    # img shape: (B, C, H, W), expect RGB image scaled between -1 and 1 or 0 and 1
-    # Convert to grayscale (simple average)
+    # img shape: (B, C, H, W)
     gray = img.mean(dim=1, keepdim=True)
 
-    # Sobel kernels
-    sobel_x = torch.tensor([[1, 0, -1], [2, 0, -2], [1, 0, -1]], dtype=torch.float32, device=img.device).unsqueeze(0).unsqueeze(0)
-    sobel_y = torch.tensor([[1, 2, 1], [0, 0, 0], [-1, -2, -1]], dtype=torch.float32, device=img.device).unsqueeze(0).unsqueeze(0)
+    # Pad with replication to avoid artificial edges at border
+    gray_padded = F.pad(gray, (1, 1, 1, 1), mode='replicate')
 
-    grad_x = F.conv2d(gray, sobel_x, padding=1)
-    grad_y = F.conv2d(gray, sobel_y, padding=1)
+    sobel_x = torch.tensor([[1, 0, -1], [2, 0, -2], [1, 0, -1]],
+                           dtype=torch.float32, device=img.device).unsqueeze(0).unsqueeze(0)
+    sobel_y = torch.tensor([[1, 2, 1], [0, 0, 0], [-1, -2, -1]],
+                           dtype=torch.float32, device=img.device).unsqueeze(0).unsqueeze(0)
+
+    grad_x = F.conv2d(gray_padded, sobel_x)
+    grad_y = F.conv2d(gray_padded, sobel_y)
 
     edges = torch.sqrt(grad_x ** 2 + grad_y ** 2)
     return edges

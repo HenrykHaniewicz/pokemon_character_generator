@@ -25,7 +25,14 @@ class MetadataEncoder:
         for key, dim in self.field_dims.items():
             value = meta[key]
             if dim == 1:
-                encoding.append(torch.tensor([1.0 if value else 0.0]))
+                # Accept bools or "true"/"false" strings (case-insensitive)
+                if isinstance(value, bool):
+                    bool_val = value
+                elif isinstance(value, str) and value.lower() in ['true', 'false']:
+                    bool_val = value.lower() == 'true'
+                else:
+                    raise TypeError("Encoding value must be boolean-like")
+                encoding.append(torch.tensor([1.0 if bool_val else 0.0]))
             else:
                 index = self.field_maps[key][value]
                 one_hot = F.one_hot(torch.tensor(index), num_classes=dim).float()
@@ -36,8 +43,18 @@ def random_metadata(encoder):
     meta = {}
     for key, dim in encoder.field_dims.items():
         if dim == 1:
-            meta[key] = random.choice([True, False])
+            options = encoder.fields[key]
+            if len(options) == 1:
+                val = options[0]
+                if isinstance(val, str) and val.lower() in ['true', 'false']:
+                    val = val.lower() == 'true'
+                meta[key] = val
+            else:
+                meta[key] = random.choice([True, False])
         else:
             options = list(encoder.field_maps[key].keys())
-            meta[key] = random.choice(options)
+            if len(options) == 1:
+                meta[key] = options[0]
+            else:
+                meta[key] = random.choice(options)
     return meta

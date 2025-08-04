@@ -38,7 +38,7 @@ def load_existing_labels(label_path):
 def get_image_files(image_dir):
     return sorted([
         f for f in os.listdir(image_dir)
-        if f.lower().endswith((".png", ".jpg", ".jpeg"))
+        if not f.startswith('.') and f.lower().endswith((".png", ".jpg", ".jpeg"))
     ])
 
 def prompt_choice(prompt_text, options):
