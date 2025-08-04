@@ -8,6 +8,8 @@ class MetadataEncoder:
         self.field_maps = {}
         self.field_dims = {}
         for key, values in self.fields.items():
+            if not values:
+                raise ValueError(f"Metadata field '{key}' has no options")
             if isinstance(values[0], bool):
                 self.field_dims[key] = 1
             else:

@@ -2,6 +2,7 @@ import sys
 import os
 import torch
 import yaml
+import errno
 from torchvision.utils import save_image
 from models.generator import ConditionalSpriteGenerator
 from utils.metadata_config import MetadataEncoder
@@ -27,8 +28,9 @@ def generate_character(args):
 
     if len(args) != len(metadata_keys):
         print(f"Usage: python generate_character.py {' '.join(metadata_keys)}")
-        print(f"Example: python generate_character.py male red blue young true")
+        print(f"Example: python generate_character.py {' '.join(str(v[0]) for v in config['metadata'].values())}")
         sys.exit(1)
+        return
 
     meta = {}
     for key, val in zip(metadata_keys, args):
@@ -41,7 +43,12 @@ def generate_character(args):
 
     z_dim = config["train"]["z_dim"]
     output_dir = config["generate"]["output_dir"]
-    os.makedirs(output_dir, exist_ok=True)
+
+    try:
+        os.makedirs(output_dir, exist_ok=True)
+    except OSError as e:
+        if e.errno != errno.EEXIST or not os.path.isdir(output_dir):
+            raise
 
     # Load model
     model = ConditionalSpriteGenerator(z_dim, encoder.meta_dim)

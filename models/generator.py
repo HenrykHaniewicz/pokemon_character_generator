@@ -4,6 +4,8 @@ import torch.nn as nn
 class ConditionalSpriteGenerator(nn.Module):
     def __init__(self, z_dim, meta_dim):
         super().__init__()
+        if (z_dim < 1 or meta_dim < 1):
+            raise ValueError("Issue when loading ConditionalSpriteGenerator. Dimensions must be positive.")
         self.fc = nn.Sequential(
             nn.Linear(z_dim + meta_dim, 1024),
             nn.ReLU(),

@@ -19,6 +19,10 @@ def sobel_edge_detector(img):
     return edges
 
 def train_conditional_generator(model, dataloader, z_dim, device, epochs, lambda_outline=1.0):
+    if len(dataloader) == 0:
+        print("Dataloader is empty. Skipping training.")
+        torch.save(model.state_dict(), "models/latest.pt")
+        return
     criterion = nn.MSELoss()
     optimizer = optim.Adam(model.parameters(), lr=2e-4)
 
