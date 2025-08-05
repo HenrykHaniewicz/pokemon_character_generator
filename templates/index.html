@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Character Generator</title>
+  <style>
+    body { font-family: sans-serif; padding: 2em; background: #f7f7f7; }
+    form { display: flex; flex-direction: column; gap: 1em; max-width: 400px; margin: auto; }
+    label { font-weight: bold; }
+    select, button { padding: 0.5em; }
+    #output img { margin-top: 2em; max-width: 100%; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+
+<h1>Generate a Character</h1>
+<form id="characterForm"></form>
+<button id="generateBtn">Generate</button>
+<div id="output"></div>
+
+<script>
+const form = document.getElementById("characterForm");
+const output = document.getElementById("output");
+
+async function loadConfigAndBuildForm() {
+  const res = await fetch("/config");
+  const config = await res.json();
+
+  for (const key in config) {
+    const label = document.createElement("label");
+    label.textContent = key;
+
+    const select = document.createElement("select");
+    select.name = key;
+
+    config[key].forEach(opt => {
+      const option = document.createElement("option");
+      option.value = opt;
+      option.textContent = opt;
+      select.appendChild(option);
+    });
+
+    form.appendChild(label);
+    form.appendChild(select);
+  }
+}
+
+document.getElementById("generateBtn").addEventListener("click", async () => {
+  const formData = new FormData(form);
+  const data = {};
+  formData.forEach((val, key) => data[key] = val);
+
+  const res = await fetch("/generate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+
+  if (res.ok) {
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    output.innerHTML = `<img src="${url}" alt="Character Sprite">`;
+  } else {
+    const err = await res.text();
+    alert("Error: " + err);
+  }
+});
+
+// Load config and form fields when page loads
+loadConfigAndBuildForm();
+</script>
+
+</body>
+</html>
