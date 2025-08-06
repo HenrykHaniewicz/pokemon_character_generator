@@ -40,6 +40,8 @@ def home():
 
 @app.route("/generate", methods=["POST"])
 def generate():
+    if not request.is_json:
+        return {"error": "Request must be JSON"}, 400
     data = request.json
     try:
         meta = {}

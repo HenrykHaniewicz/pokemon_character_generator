@@ -50,7 +50,7 @@ def main():
     ])
 
     dataset = SpriteDataset(config["train"]["data_dir"], config["train"]["labels_file"], transform, encoder=encoder)
-    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=4)
 
     model = ConditionalSpriteGenerator(z_dim, encoder.meta_dim).to(device)
     train_conditional_generator(model, dataloader, z_dim, device, epochs)

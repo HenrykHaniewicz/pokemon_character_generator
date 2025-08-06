@@ -40,6 +40,7 @@ def generate_character(args):
         except ValueError as e:
             print(f"Error for '{key}': {e}")
             sys.exit(1)
+            return
 
     z_dim = config["train"]["z_dim"]
     output_dir = config["generate"]["output_dir"]
