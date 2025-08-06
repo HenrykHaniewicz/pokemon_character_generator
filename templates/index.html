@@ -1,74 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Character Generator</title>
-  <style>
-    body { font-family: sans-serif; padding: 2em; background: #f7f7f7; }
-    form { display: flex; flex-direction: column; gap: 1em; max-width: 400px; margin: auto; }
-    label { font-weight: bold; }
-    select, button { padding: 0.5em; }
-    #output img { margin-top: 2em; max-width: 100%; border: 1px solid #ccc; }
-  </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+  <div class="container">
+    <div class="top-bar">
+      <h1>Character Generator</h1>
+      <button id="darkToggle" class="toggle-btn">🌓</button>
+    </div>
 
-<h1>Generate a Character</h1>
-<form id="characterForm"></form>
-<button id="generateBtn">Generate</button>
-<div id="output"></div>
+    {% if not model_available %}
+      <div class="error-message">
+        <strong>⚠ Model not found:</strong> Please upload or train the model first.
+      </div>
+    {% endif %}
 
-<script>
-const form = document.getElementById("characterForm");
-const output = document.getElementById("output");
+    <form id="characterForm" class="form"></form>
+    <button id="generateBtn" class="generate-btn">Generate</button>
 
-async function loadConfigAndBuildForm() {
-  const res = await fetch("/config");
-  const config = await res.json();
+    <div id="loading" class="loading hidden">
+      <div class="spinner"></div>
+      <p>Generating...</p>
+    </div>
 
-  for (const key in config) {
-    const label = document.createElement("label");
-    label.textContent = key;
+    <div id="output" class="output"></div>
+    <button id="downloadBtn" class="download-btn hidden">⬇️ Download</button>
+  </div>
 
-    const select = document.createElement("select");
-    select.name = key;
+  <script>
+    const form = document.getElementById("characterForm");
+    const output = document.getElementById("output");
+    const loading = document.getElementById("loading");
+    const generateBtn = document.getElementById("generateBtn");
+    const downloadBtn = document.getElementById("downloadBtn");
 
-    config[key].forEach(opt => {
-      const option = document.createElement("option");
-      option.value = opt;
-      option.textContent = opt;
-      select.appendChild(option);
+    async function loadConfigAndBuildForm() {
+      const res = await fetch("/config");
+      const config = await res.json();
+
+      for (const key in config) {
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("form-group");
+
+        const label = document.createElement("label");
+        label.textContent = key;
+        label.setAttribute("for", key);
+
+        const select = document.createElement("select");
+        select.name = key;
+        select.id = key;
+
+        config[key].forEach(opt => {
+          const option = document.createElement("option");
+          option.value = opt;
+          option.textContent = opt;
+          select.appendChild(option);
+        });
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(select);
+        form.appendChild(wrapper);
+      }
+    }
+
+    document.getElementById("generateBtn").addEventListener("click", async () => {
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((val, key) => data[key] = val);
+
+      loading.classList.remove("hidden");
+      output.innerHTML = "";
+      downloadBtn.classList.add("hidden");
+
+      const res = await fetch("/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      loading.classList.add("hidden");
+
+      if (res.ok) {
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        output.innerHTML = `<img id="generatedImage" src="${url}" alt="Character Sprite">`;
+        downloadBtn.classList.remove("hidden");
+
+        // Set download button functionality
+        downloadBtn.onclick = () => {
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "character.png";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        };
+      } else {
+        const err = await res.text();
+        alert("Error: " + err);
+      }
     });
 
-    form.appendChild(label);
-    form.appendChild(select);
-  }
-}
+    // Dark mode toggle
+    document.getElementById("darkToggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+    });
 
-document.getElementById("generateBtn").addEventListener("click", async () => {
-  const formData = new FormData(form);
-  const data = {};
-  formData.forEach((val, key) => data[key] = val);
-
-  const res = await fetch("/generate", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
-
-  if (res.ok) {
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
-    output.innerHTML = `<img src="${url}" alt="Character Sprite">`;
-  } else {
-    const err = await res.text();
-    alert("Error: " + err);
-  }
-});
-
-// Load config and form fields when page loads
-loadConfigAndBuildForm();
-</script>
-
+    loadConfigAndBuildForm();
+  </script>
 </body>
 </html>

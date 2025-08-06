@@ -1,0 +1,215 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f2f5;
+  color: #333;
+  padding: 2em;
+  line-height: 1.6;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body.dark {
+  background: #121212;
+  color: #f0f0f0;
+}
+
+body.dark .container {
+  background: #1e1e1e;
+  box-shadow: none;
+}
+
+body.dark label {
+  color: #ccc;
+}
+
+body.dark select {
+  background-color: #2b2b2b;
+  color: #f0f0f0;
+  border-color: #444;
+}
+
+body.dark .generate-btn {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+}
+
+body.dark .download-btn {
+  background: #444;
+  color: #f0f0f0;
+}
+
+body.dark .error-message {
+  background-color: #3c2f0d;
+  border-color: #8a6d3b;
+  color: #f0e68c;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+body.dark .toggle-btn {
+  color: #f0f0f0;
+}
+
+/* Container */
+.container {
+  max-width: 640px;
+  margin: auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 2.5em;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+/* Headings */
+h1 {
+  text-align: center;
+  margin-bottom: 1.5em;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+/* Form Layout */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+}
+
+select {
+  padding: 0.7em;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  transition: border-color 0.2s ease;
+}
+
+select:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+/* Generate Button */
+.generate-btn {
+  padding: 0.9em 1.2em;
+  background: linear-gradient(to right, #4e54c8, #8f94fb);
+  color: white;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s ease;
+  margin-top: 1em;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+.generate-btn:hover {
+  background: linear-gradient(to right, #3b41b4, #7c82f8);
+}
+
+.generate-btn:active {
+  transform: scale(0.98);
+}
+
+/* Error Message */
+.error-message {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 1em;
+  border: 1px solid #ffeeba;
+  border-radius: 10px;
+  margin-bottom: 1.5em;
+  text-align: center;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+/* Output Image */
+.output {
+  margin-top: 2em;
+  text-align: center;
+}
+
+.output img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2em;
+}
+
+.hidden {
+  display: none;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ccc;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1em;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.download-btn {
+  margin-top: 1.5em;
+  padding: 0.8em 1.2em;
+  background: #28a745;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+.download-btn:hover {
+  background: #218838;
+}
+
