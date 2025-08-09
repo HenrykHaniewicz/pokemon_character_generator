@@ -11,28 +11,52 @@ from torchvision.utils import save_image
 import yaml
 
 
-def generate_samples_with_grading(generator, z_dim, encoder, output_dir, device, allow_grading=False):
+def generate_samples(generator, z_dim, encoder, output_dir, device, allow_grading=False):
     generator.eval()
     os.makedirs(output_dir, exist_ok=True)
     grades = {}
+
     for i in range(10):
         z = torch.randn(1, z_dim).to(device)
         meta = random_metadata(encoder)
         meta_vec = encoder.encode(meta).unsqueeze(0).to(device)
+
         with torch.no_grad():
             output = generator(z, meta_vec)
+
         output_cpu = output.cpu()
         file_path = os.path.join(output_dir, f"gen_{i:03}.png")
         save_image((output_cpu + 1) / 2, file_path)
-        print(f"Generated {file_path} with meta: {meta}")
+        print(f"\nGenerated {file_path} with original meta: {meta}")
 
         if allow_grading:
-            grade = input("Rate the sprite from 1 (poor) to 4 (excellent): ")
-            grades[file_path] = {"meta": meta, "grade": int(grade)}
+            graded_meta = {}
+            print("Please enter corrected metadata for this image:")
+
+            for key, cfg in encoder.metadata_config.items():
+                user_input = input(f"  {key} [{cfg['type']}]: ").strip()
+                if cfg['type'] == 'bool':
+                    graded_meta[key] = user_input.lower() in ['true', '1', 'yes', 'y']
+                elif cfg['type'] == 'int':
+                    graded_meta[key] = int(user_input)
+                elif cfg['type'] == 'float':
+                    graded_meta[key] = float(user_input)
+                else:
+                    graded_meta[key] = user_input
+
+            quality = int(input("Rate the image quality from 1 (poor) to 10 (excellent): "))
+
+            grades[file_path] = {
+                "meta_original": meta,
+                "meta_corrected": graded_meta,
+                "quality_rating": quality
+            }
 
     if allow_grading:
         with open(os.path.join(output_dir, "grades.json"), "w") as f:
             json.dump(grades, f, indent=2)
+        print(f"\nSaved feedback ratings to {os.path.join(output_dir, 'grades.json')}")
+
 
 def main():
     with open("config.yaml") as f:
@@ -68,12 +92,12 @@ def main():
     ])
 
     dataset = SpriteDataset(config["train"]["data_dir"], config["train"]["labels_file"], transform, encoder=encoder)
-    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=4)
+    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=config["train"]["cores"])
 
     model = ConditionalSpriteGenerator(z_dim, encoder.meta_dim).to(device)
     train_conditional_generator(model, dataloader, z_dim, device, epochs)
 
-    generate_samples_with_grading(
+    generate_samples(
         model,
         z_dim,
         encoder,
