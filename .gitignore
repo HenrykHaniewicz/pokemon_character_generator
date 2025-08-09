@@ -12,3 +12,11 @@ build/
 .env/
 venv/
 generated_sprites/
+*.png
+models/__pycache__/*
+*.pyc
+*.pyo
+*.pyd
+*.db
+utils/__pycache__/*
+*.pt

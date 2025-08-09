@@ -10,6 +10,7 @@ import os
 from torchvision.utils import save_image
 import yaml
 
+
 def generate_samples_with_grading(generator, z_dim, encoder, output_dir, device, allow_grading=False):
     generator.eval()
     os.makedirs(output_dir, exist_ok=True)
@@ -20,8 +21,9 @@ def generate_samples_with_grading(generator, z_dim, encoder, output_dir, device,
         meta_vec = encoder.encode(meta).unsqueeze(0).to(device)
         with torch.no_grad():
             output = generator(z, meta_vec)
+        output_cpu = output.cpu()
         file_path = os.path.join(output_dir, f"gen_{i:03}.png")
-        save_image((output + 1) / 2, file_path)
+        save_image((output_cpu + 1) / 2, file_path)
         print(f"Generated {file_path} with meta: {meta}")
 
         if allow_grading:
@@ -42,7 +44,23 @@ def main():
     batch_size = config["train"]["batch_size"]
     epochs = config["train"]["epochs"]
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
+    try:
+        import torch_directml
+        if torch.cuda.is_available():
+            print(f"Using GPU: {torch.cuda.get_device_name(0)}")
+        elif torch_directml.is_available():
+            device = torch_directml.device()
+            print("Using DirectML for GPU acceleration")
+        
+        else:
+            print("Using CPU")
+    except ImportError:
+        print("DirectML not available, using CPU")
+        if torch.cuda.is_available():
+            print(f"Using GPU: {torch.cuda.get_device_name(0)}")
+        
+        else:
+            print("Using CPU")
     transform = transforms.Compose([
         transforms.Resize((192, 128)),
         transforms.ToTensor(),
