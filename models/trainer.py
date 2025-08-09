@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
-
+import matplotlib.pyplot as plt
 from models.loss import VGGPerceptualLoss
 
 def sobel_edge_detector(img):
@@ -30,8 +30,10 @@ def train_conditional_generator(model, dataloader, z_dim, device, epochs, lambda
         return
 
     perceptual_loss_fn = VGGPerceptualLoss().to(device)
-    optimizer = optim.Adam(model.parameters(), lr=2e-4)
-
+    optimizer = optim.Adam(model.parameters(), lr=2e-3)
+    perceptual_losses= []
+    outline_losses = []
+    total_losses = []
     for epoch in range(epochs):
         total_loss = 0.0
         for real_imgs, meta_vecs in dataloader:
@@ -67,6 +69,16 @@ def train_conditional_generator(model, dataloader, z_dim, device, epochs, lambda
             total_loss += loss.item()
 
         avg_loss = total_loss / len(dataloader)
+        perceptual_losses.append(perceptual_loss.item())
+        outline_losses.append(outline_loss.item())
+        total_losses.append(avg_loss)
         print(f"[Epoch {epoch+1}] Loss: {avg_loss:.4f} (Perceptual: {perceptual_loss.item():.4f}, Outline: {outline_loss.item():.4f})")
-
+    plt.plot(range(1, epochs + 1), total_losses, label='Total Loss')
+    plt.plot(range(1, epochs + 1), perceptual_losses, label='Perceptual Loss')
+    plt.plot(range(1, epochs + 1), outline_losses, label='Outline Loss')
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.legend()
+    plt.savefig("loss_plot.png")
+    plt.close()
     torch.save(model.state_dict(), "models/sprite_gen.pt")
