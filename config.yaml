@@ -12,7 +12,7 @@ train:
   cores: 8
   data_dir: data/sprites
   labels_file: data/sprites/labels.json
-  save_path: models/sprite_gen_graded.pt
+  save_path: models/sprite_gen.pt
 
 quality_graded_train:
   graded_file: ""          # leave blank to default to generate/output_dir/grades.json
