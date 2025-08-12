@@ -146,27 +146,4 @@ def main():
 
 
 if __name__ == "__main__":
-    device = pick_device()
-
-    encoder = MetadataEncoder(config)
-    z_dim = config["train"]["z_dim"]
-
-    model = ConditionalSpriteGenerator(z_dim, encoder.meta_dim + 1)
-    model.load_state_dict(torch.load(config["train"]["save_path"], map_location="cpu", weights_only=False))
-
-    model.expects_quality = True
-
-    metadata_keys = list(config["metadata"].keys())
-
-    generate_samples(
-        model,
-        z_dim,
-        encoder,
-        config["generate"]["output_dir"],
-        device,
-        config["generate"]["num_samples"],
-        metadata_keys,
-        allow_grading=config["generate"].get("allow_grading", False)
-    )
-
-    # main()
+    main()
