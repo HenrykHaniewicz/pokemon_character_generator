@@ -7,6 +7,7 @@ import os
 
 from models.generator import ConditionalSpriteGenerator
 from utils.metadata_config import MetadataEncoder
+from utils.util import parse_arg
 
 def create_app(test_config=None):
     app = Flask(__name__)
@@ -26,19 +27,8 @@ def create_app(test_config=None):
     model = None
     if model_available:
         model = ConditionalSpriteGenerator(z_dim, encoder.meta_dim)
-        model.load_state_dict(torch.load(model_path, map_location="cpu"))
+        model.load_state_dict(torch.load(model_path, map_location="cpu", weights_only=False))
         model.eval()
-
-    def parse_arg(value, options):
-        if all(isinstance(opt, bool) for opt in options):
-            return value.lower() in ["true", "1", "yes"]
-        if value.isdigit():
-            idx = int(value) - 1
-            if 0 <= idx < len(options):
-                return options[idx]
-        if value in options:
-            return value
-        raise ValueError(f"Invalid input '{value}'. Choose from: {options} or use index.")
 
     @app.route("/")
     def home():

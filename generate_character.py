@@ -6,22 +6,10 @@ import errno
 from torchvision.utils import save_image
 from models.generator import ConditionalSpriteGenerator
 from utils.metadata_config import MetadataEncoder
-
-def parse_arg(value, options):
-    if all(isinstance(opt, bool) for opt in options):
-        return value.lower() in ["true", "1", "yes"]
-    if value.isdigit():
-        idx = int(value) - 1
-        if 0 <= idx < len(options):
-            return options[idx]
-    if value in options:
-        return value
-    raise ValueError(f"Invalid input '{value}'. Choose from: {options} or use index.")
+from utils.util import make_unique_path, load_config, parse_arg
 
 def generate_character(args):
-    # Load config
-    with open("config.yaml") as f:
-        config = yaml.safe_load(f)
+    config = load_config("config.yaml")
 
     encoder = MetadataEncoder(config)
     metadata_keys = list(config["metadata"].keys())
@@ -53,7 +41,7 @@ def generate_character(args):
 
     # Load model
     model = ConditionalSpriteGenerator(z_dim, encoder.meta_dim)
-    model.load_state_dict(torch.load(config["train"]["save_path"], map_location="cpu"))
+    model.load_state_dict(torch.load(config["train"]["save_path"], map_location="cpu", weights_only=False))
     model.eval()
 
     # Generate sprite
@@ -62,8 +50,8 @@ def generate_character(args):
     with torch.no_grad():
         output = model(z, meta_vec)
 
-    filename = "_".join(str(meta[k]) for k in metadata_keys) + ".png"
-    save_path = os.path.join(output_dir, filename)
+    base = "_".join(str(meta[k]) for k in metadata_keys)
+    save_path = make_unique_path(output_dir, base, ext=".png")
     save_image((output + 1) / 2, save_path)
     print(f"✅ Saved sprite to: {save_path}")
 
