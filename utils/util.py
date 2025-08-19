@@ -4,6 +4,7 @@ import os
 import yaml
 import torch
 from PIL import Image
+from torchvision import transforms
 import platform
 import subprocess
 
@@ -84,3 +85,10 @@ def make_unique_path(output_dir, base, ext=".png"):
         if not os.path.exists(candidate):
             return candidate
         i += 1
+
+def build_transforms(size):
+    return transforms.Compose([
+        transforms.Resize(size),
+        transforms.ToTensor(),
+        transforms.Normalize([0.5]*3, [0.5]*3)
+    ])

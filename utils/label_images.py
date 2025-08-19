@@ -1,45 +1,13 @@
 import os
 import json
-import yaml
-from PIL import Image
-import platform
-import subprocess
 
-def open_image_non_blocking(img_path):
-    system = platform.system()
-    try:
-        if system == "Darwin":  # macOS
-            proc = subprocess.Popen(["qlmanage", "-p", img_path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-            return proc
-        elif system == "Linux":
-            proc = subprocess.Popen(["xdg-open", img_path])
-            return proc
-        elif system == "Windows":
-            proc = subprocess.Popen(["mspaint", img_path])
-            return proc
-        else:
-            print("Cannot stop blocking process...")
-            Image.open(img_path).show()
-            return None
-    except Exception as e:
-        print(f"Failed to open image {img_path}: {e}")
-        return None
-
-def load_config(config_path="config.yaml"):
-    with open(config_path) as f:
-        return yaml.safe_load(f)
+from utils.util import open_image_non_blocking, load_config, get_image_files
 
 def load_existing_labels(label_path):
     if os.path.exists(label_path):
         with open(label_path) as f:
             return json.load(f)
     return {}
-
-def get_image_files(image_dir):
-    return sorted([
-        f for f in os.listdir(image_dir)
-        if not f.startswith('.') and f.lower().endswith((".png", ".jpg", ".jpeg"))
-    ])
 
 def prompt_choice(prompt_text, options):
     while True:

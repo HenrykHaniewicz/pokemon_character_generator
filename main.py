@@ -3,13 +3,11 @@ from models.generator import ConditionalSpriteGenerator
 from models.trainer import train_conditional_generator, train_conditional_generator_with_quality
 from utils.dataset import SpriteDataset, GradedSpriteDataset
 from utils.metadata_config import MetadataEncoder, random_metadata
-from utils.util import pick_device, load_config, make_unique_path
-from torchvision import transforms
+from utils.util import pick_device, load_config, make_unique_path, build_transforms
 from torch.utils.data import DataLoader
 import json
 import os
 from torchvision.utils import save_image
-import yaml
 import argparse
 
 config = load_config("config.yaml")
@@ -69,14 +67,6 @@ def generate_samples(generator, z_dim, encoder, output_dir, device, num_samples,
         print(f"\nSaved feedback ratings to {out_json}")
 
 
-def build_transforms():
-    return transforms.Compose([
-        transforms.Resize((192, 128)),
-        transforms.ToTensor(),
-        transforms.Normalize([0.5]*3, [0.5]*3)
-    ])
-
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--graded-train", action="store_true", help="Use the graded (quality-aware) training pipeline.")
@@ -87,7 +77,7 @@ def main():
     batch_size = config["train"]["batch_size"]
     epochs = config["train"]["epochs"]
     device = pick_device()
-    transform = build_transforms()
+    transform = build_transforms((192, 128))
 
     metadata_keys = list(config["metadata"].keys())
 

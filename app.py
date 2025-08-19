@@ -1,20 +1,18 @@
 from flask import Flask, request, send_file, render_template
 from io import BytesIO
 import torch
-import yaml
 from torchvision.utils import save_image
 import os
 
 from models.generator import ConditionalSpriteGenerator
 from utils.metadata_config import MetadataEncoder
-from utils.util import parse_arg
+from utils.util import parse_arg, load_config
 
 def create_app(test_config=None):
     app = Flask(__name__)
 
     # Load config
-    with open("config.yaml") as f:
-        config = yaml.safe_load(f)
+    config = load_config("config.yaml")
 
     encoder = MetadataEncoder(config)
     z_dim = config["train"]["z_dim"]

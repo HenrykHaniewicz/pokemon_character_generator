@@ -2,7 +2,6 @@ import os
 import json
 from PIL import Image
 from torch.utils.data import Dataset
-import random
 
 class SpriteDataset(Dataset):
     def __init__(self, image_dir, label_file, transform=None, encoder=None):
