@@ -20,3 +20,4 @@ models/__pycache__/*
 *.db
 utils/__pycache__/*
 *.pt
+*.onnx
